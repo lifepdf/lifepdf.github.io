@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="LifePdf — free, privacy-first browser tools for PDFs, images, text and everyday tasks.">
+  <title>LifePdf — Free Online Tools, Private by Design</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="LifePdf home">
+      <span class="brand-mark">L</span><span>Life<span class="brand-accent">Pdf</span></span>
+    </a>
+    <div class="top-actions">
+      <span class="privacy-pill"><span class="status-dot"></span> Files stay on your device</span>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle light or dark theme" title="Toggle theme">☼</button>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> FREE TOOLS. PRIVATE BY DESIGN.</div>
+        <h1>Get it done.<br><span class="gradient-text">Keep it private.</span></h1>
+        <p class="hero-subtitle">Useful tools for PDFs, images, text and everyday tasks — processed right in your browser. No account. No uploads. No tracking.</p>
+        <label class="search-wrap" for="tool-search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="tool-search" type="search" placeholder="Search  a tool… (e.g. compress image)" autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+        <div class="hero-meta"><span>✓ Free to use</span><span>✓ No file uploads</span><span>✓ No saved history</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="float-card card-pdf"><span class="file-icon pdf">PDF</span><div><b>PDF tools</b><small>Merge · Split · Convert</small></div></div>
+        <div class="float-card card-image"><span class="file-icon img">IMG</span><div><b>Image studio</b><small>Resize · Compress</small></div></div>
+        <div class="float-card card-lock"><span class="lock-icon">⌑</span><div><b>Private by design</b><small>On-device processing</small></div></div>
+        <div class="hero-center"><div class="center-ring">✦</div><span>One toolkit.<br>Many possibilities.</span></div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Privacy principles">
+      <div><span class="trust-icon">◉</span><span><b>Local processing</b><small>Your selected files are handled in this browser</small></span></div>
+      <div><span class="trust-icon">⌁</span><span><b>No account needed</b><small>Open a tool and get started</small></span></div>
+      <div><span class="trust-icon">↧</span><span><b>Instant download</b><small>Save the result when you're ready</small></span></div>
+    </section>
+
+    <section class="section-heading">
+      <div><div class="eyebrow">YOUR TOOLKIT</div><h2>What do you need to do?</h2></div>
+      <div class="category-pills" id="category-pills" role="group" aria-label="Filter by category">
+        <button class="category-pill active" data-category="all">All tools</button>
+        <button class="category-pill" data-category="pdf">PDF</button>
+        <button class="category-pill" data-category="image">Images</button>
+        <button class="category-pill" data-category="text">Text & files</button>
+        <button class="category-pill" data-category="daily">Daily tools</button>
+      </div>
+    </section>
+
+    <section id="tool-grid" class="tool-grid" aria-live="polite"></section>
+    <div id="no-results" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>No matching tools</h3><p>Try another search or choose a different category.</p></div>
+
+    <section class="privacy-banner">
+      <div class="privacy-shield">◇</div>
+      <div><h3>Your files are yours. Full stop.</h3><p>LifePdf has no file-upload server, user accounts, analytics or saved tool history. Processing happens in your browser. For full privacy details, see the README and Privacy section below.</p></div>
+      <a href="#privacy" class="text-link">Our privacy promise ↗</a>
+    </section>
+
+    <section id="workspace" class="workspace" hidden>
+      <div class="workspace-head"><div><span class="workspace-kicker">TOOL WORKSPACE</span><h2 id="workspace-title">Tool</h2><p id="workspace-description"></p></div><button id="close-workspace" class="icon-btn" aria-label="Close tool">×</button></div>
+      <div id="workspace-body"></div>
+      <div id="tool-status" class="tool-status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="more-section">
+      <div class="section-heading compact"><div><div class="eyebrow">BUILT TO GROW</div><h2>More tools, same principles.</h2></div></div>
+      <div class="planned-grid">
+        <div class="planned-card"><span>▤</span><div><b>Document conversion</b><small>DOCX, XLSX and PPTX conversion depends on browser-compatible engines. Not falsely advertised as working.</small></div><em>Planned</em></div>
+        <div class="planned-card"><span>◌</span><div><b>OCR & scanned PDFs</b><small>Can be added with a local OCR engine; larger downloads and slower processing expected.</small></div><em>Planned</em></div>
+        <div class="planned-card"><span>✎</span><div><b>Advanced PDF editing</b><small>Text editing and complex repair need specialized engines; basic page operations are available now.</small></div><em>Planned</em></div>
+      </div>
+    </section>
+
+    <section id="privacy" class="privacy-details">
+      <div class="eyebrow">PRIVACY & LIMITATIONS</div><h2>Private by design, honestly explained.</h2>
+      <div class="privacy-columns">
+        <div><h3>What we do not do</h3><ul><li>We do not upload your files to a LifePdf server.</li><li>We do not create accounts or save tool history.</li><li>We do not include analytics, ad scripts or tracking pixels.</li><li>We do not store output files after you leave the page.</li></ul></div>
+        <div><h3>What to know</h3><ul><li>Libraries are loaded from third-party CDNs, which may receive standard connection metadata such as your IP address.</li><li>Selected files are processed locally, but browser extensions or a compromised device can still affect privacy.</li><li>Large files may run slowly or exceed your device's memory.</li><li>PDF “compression” is not included as a fake button: general-purpose lossless compression is not reliably possible with a simple browser-only rewrite.</li></ul></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><a class="brand footer-brand" href="#"><span class="brand-mark">L</span><span>Life<span class="brand-accent">Pdf</span></span></a><span>Free to use · No account · No file uploads</span><a href="README.md">Project & licensing notes</a><span>© <span id="year"></span> LifePdf</span></footer>
+
+  <noscript><div class="noscript">LifePdf needs JavaScript enabled to run browser-based tools.</div></noscript>
+</body>
+</html>
